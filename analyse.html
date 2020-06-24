@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1</title>
+</head>
+
+<body>
+    <textarea id="textArea" cols="30" rows="10">
+
+    </textarea>
+    <button onclick="analyseTextArea()">Analyse</button>
+    <button onclick="clearTextArea()">Clear</button>
+
+    <table id="nodeNames">
+        <tr>
+            <th> Node Name </th>
+            <th> Count </th>
+        </tr>
+
+    </table>
+
+
+
+    <script>
+        let clearTextArea = () => {
+            document.getElementById("textArea").value = " ";
+        }
+        let analyseTextArea = () => {
+            let htmlString = document.getElementById("textArea").value;
+            let htmlCode = new DOMParser().parseFromString(htmlString, "text/html");
+            let tagNameArray = [];
+
+            let parent = htmlCode.body.children
+
+            let length = 1;
+            while (length > 0) {
+                parent = generateNodeNames(parent, tagNameArray);
+                length = parent.length;
+            }
+
+            let count = (array) => {
+                const distinct = [...new Set(array)].sort();
+                let values = {};
+                array.sort();
+                distinct.forEach(value => {
+
+                    let count = 0;
+                    for (let i = 0; i < array.length; i++) {
+                        if (array[i] == value) {
+                            count++;
+                        }
+
+                    }
+
+                    values[value] = count;
+                })
+                return values;
+            }
+
+            let table = document.getElementById('nodeNames');
+            table.style.textAlign = "center";
+            for (const [key, value] of Object.entries(count(tagNameArray))) {
+                let row = document.createElement('tr');
+                let dataKey = document.createElement('td');
+                dataKey.textContent = key;
+                let dataValue = document.createElement('td');
+                dataValue.textContent = value;
+
+
+                row.appendChild(dataKey);
+                row.appendChild(dataValue);
+                table.appendChild(row);
+            }
+        }
+
+        
+        let generateNodeNames = (parent, array) => {
+            let hasChildren = [];
+
+            for (let i = 0; i < parent.length; i++) {
+                const child = parent[i];
+                const childCount = child.children.length;
+                array.push(child.tagName.toLowerCase());
+                if (childCount > 0) {
+                    for (let j = 0; j < childCount; j++) {
+                        hasChildren.push(child.children[j]);
+                    }
+                }
+            }
+
+            return hasChildren;
+        }
+
+
+    </script>
+</body>
+
+</html>

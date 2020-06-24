@@ -1,0 +1,25 @@
+{
+  "name": "productbuildertest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "apis.js",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "jest": "^26.1.0",
+    "json-2-csv": "^3.7.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "run": "node apis.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TRGZeca/ProductBuilderTest.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TRGZeca/ProductBuilderTest/issues"
+  },
+  "homepage": "https://github.com/TRGZeca/ProductBuilderTest#readme"
+}
