@@ -5,7 +5,7 @@
   "main": "apis.js",
   "dependencies": {
     "axios": "^0.19.2",
-    "jest": "^26.1.0",
+    "jest": "^29.7.0",
     "json-2-csv": "^3.7.4"
   },
   "devDependencies": {},
